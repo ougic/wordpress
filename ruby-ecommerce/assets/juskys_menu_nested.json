@@ -1,0 +1,56 @@
+{
+  "Möbel": [
+    {
+      "label": "Betten",
+      "url": "/collections/betten"
+    },
+    {
+      "label": "Boxspringbetten",
+      "url": "/collections/boxspringbetten"
+    },
+    {
+      "label": "Polsterbetten",
+      "url": "/collections/polsterbetten"
+    }
+  ],
+  "Garten": [
+    {
+      "label": "Gartenmöbel",
+      "url": "/collections/gartenmoebel"
+    },
+    {
+      "label": "Gartenstühle",
+      "url": "/collections/gartenstuhle"
+    }
+  ],
+  "Freizeit": [
+    {
+      "label": "Fitness",
+      "url": "/collections/fitnessgeraete"
+    }
+  ],
+  "Haushalt": [
+    {
+      "label": "Schwerlastregale",
+      "url": "/collections/schwerlastregale"
+    }
+  ],
+  "Solar": [
+    {
+      "label": "Solar",
+      "url": "/collections/solar"
+    }
+  ],
+  "Tierbedarf": [
+    {
+      "label": "Hundebedarf",
+      "url": "/collections/hundebedarf"
+    }
+  ],
+  "Sale": [
+    {
+      "label": "Garten Sale",
+      "url": "https://juskys.de/collections/sale?filter.p.product_type=Garten"
+    }
+  ]
+}

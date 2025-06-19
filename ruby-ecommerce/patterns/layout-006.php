@@ -4,6 +4,21 @@
  * Slug: ruby-ecommerce/layout-006
  * Categories: layouts
  */
+
+// Get the path to the JSON file using WordPress's get_template_directory()
+$json_path = get_template_directory() . '/assets/juskys_menu_nested.json';
+
+// Read and decode the JSON file
+if (file_exists($json_path)) {
+    $json_data = file_get_contents($json_path);
+    $menu_data = json_decode($json_data, true); // true for associative array
+
+    // Example: Output the menu data for debugging
+    // echo '<pre>' . print_r($menu_data, true) . '</pre>';
+} else {
+    $menu_data = null;
+    // echo 'Menu JSON file not found.';
+}
 ?>
 
 <!-- wp:group {"align":"full","className":"superbthemes-navigation-004","style":{"spacing":{"padding":{"top":"20px","bottom":"20px","left":"var:preset|spacing|superbspacing-small","right":"var:preset|spacing|superbspacing-small"}},"border":{"width":"0px","style":"none"}},"layout":{"type":"constrained","contentSize":""}} -->
@@ -14,15 +29,25 @@
 
 <!-- wp:column {"verticalAlignment":"center","width":"50%","className":"superbthemes-navigation-004-columns-nav"} -->
 <div class="wp-block-column is-vertically-aligned-center superbthemes-navigation-004-columns-nav" style="flex-basis:50%"><!-- wp:navigation {"textColor":"mono-2","icon":"menu","style":{"spacing":{"blockGap":"var:preset|spacing|superbspacing-small"}},"fontSize":"superbfont-xsmall","layout":{"type":"flex","justifyContent":"center"}} -->
-<!-- wp:navigation-link {"label":"Home","url":"#","kind":"custom","isTopLevelLink":true} /-->
 
-<!-- wp:navigation-link {"label":"About","url":"#","kind":"custom","isTopLevelLink":true} /-->
+<?php
+if ($menu_data) {
+    foreach ($menu_data as $category => $subcategories) {
+        // Top-level navigation link (category)
+        echo '<!-- wp:navigation-link {"label":"' . esc_js($category) . '","url":"#","kind":"custom","isTopLevelLink":true} -->' . "\n";
+        if (!empty($subcategories)) {
+            echo '<ul class="wp-block-navigation__submenu-container">' . "\n";
+            foreach ($subcategories as $subcategory) {
+                echo '<!-- wp:navigation-link {"label":"' . esc_js($subcategory['label']) . '","url":"*","kind":"custom"} /-->' . "\n";
+            }
+            echo "</ul>\n";
+        }
+        echo '<!-- /wp:navigation-link -->' . "\n";
+    }
+}
+?>
 
-<!-- wp:navigation-link {"label":"Shop","url":"#","kind":"custom","isTopLevelLink":true} /-->
 
-<!-- wp:navigation-link {"label":"Blog","url":"#","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"Contact","url":"#","kind":"custom","isTopLevelLink":true} /-->
 <!-- /wp:navigation --></div>
 <!-- /wp:column -->
 
